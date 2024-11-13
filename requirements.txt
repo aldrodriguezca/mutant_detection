@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pymongo
+mangum
+pytest
+httpx
