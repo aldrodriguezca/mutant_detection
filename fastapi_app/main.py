@@ -16,6 +16,13 @@ async def get_dna_stats():
 
 @app.post("/mutant")
 async def filter_mutant(dna_data: dict, response: Response):
+    if ('dna' not in dna_data.keys()):
+        response.status_code = status.HTTP_400_BAD_REQUEST
+        return {
+            "statusCode": 400,
+            "message": "Malformed input object"
+        }
+    
     is_mutant = verify_and_save_sequence(dna_data)
     if is_mutant:
         response.status_code = status.HTTP_200_OK
